@@ -2,95 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <link rel="stylesheet"
-                  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
-                <script
-                src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                <script
-                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-                <title>Mantenimiento de usuarios</title>
-                </head>
-                <body>
-                    <h1>Listado de Usuarios</h1>
-                    <br/>
-                    <div class="table-responsive">
-                        <table class="table table-responsive table-sm table-dark table-striped tablebordered table-hover">
-                            <thead>
-                                <tr class="info">
-                                    <th>
-                                        <a th:href="@{usuarioListarPag.do(pag=0, orden=usuario)}">Usuario</a>
-                                    </th>
-                                    <th>
-                                        <a th:href="@{usuarioListarPag.do(pag=0, orden=clave)}">Clave</a>
-                                    </th>
-                                    <th>
-                                        <a th:href="@{usuarioListarPag.do(pag=0,
-                                           orden=nombreCompleto)}">Nombre completo</a>
-                                    </th>
-                                    <th>Foto</th>
-                                    <th>Eliminar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="user : ${lista}">
-                                    <td>
-                                        <a th:href="@{|usuarioMod.do?codigoUsuario=| + ${user.usuario}}"
-                                           th:text="${user.usuario}">
-                                    </td>
-                                    <td th:text="${user.clave}"></td>
-                                    <td th:text="${user.nombreCompleto}"></td>
-                                    <td>
-                                        <span th:if="${user.fotoBase64==null}" th:text="|Sin foto|"
-                                              th:remove="tag">Sin foto</span> 
-                                        <img th:src="@{'data:image/jpeg;base64,'+${user.fotoBase64}}"
-                                             th:if="${user.fotoBase64!=null}"
-                                             height="25" width="25"/>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Eliminar</button>
-                                    
-                                    </td>
-                                </tr>
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">Modal title</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>One fine body&hellip;</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                <a th:href="@{'usuarioEli.do?codigoUsuario=' + ${user.usuario}}" class="btn btn-primary btn-lg active">Confirmar</a>
-                                                <!--<td><a th:href="@{'usuarioEli.do?codigoUsuario=' + ${user.usuario}}">Eliminar</a></td> -->
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-
-
-
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <br/>
-                    <a th:href="@{usuarioListarPag.do(pag=0,orden=${param.orden})}"
-                       th:text="|Primera p&aacute;gina|" >Primera</a> 
-                    &nbsp;&nbsp;
-                    <a th:href="@{usuarioListarPag.do(pag=1,orden=${param.orden})}"
-                       th:text="|Segunda p&aacute;gina|" >Segunda</a>
-                    <br/><br/>
-                    <a th:href="@{'usuarioCrear.do'}" class="btn btn-primary btn-lg active">Crear
-                        Usuario</a>
-                    <br />
-                    <h3 th:text="'Se han creado en esta sesi&oacute;n '+${contador}+'
-                        usuarios!'">Titulo</h3>
-
-
-
-                </body>
-                </html> 
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <title>Mantenimiento de usuarios</title>
+    </head>
+    <body>
+        <h1>Listado de Usuarios</h1>
+        <br/>
+        <div class="table-responsive">
+            <table class="table table-responsive table-sm table-dark table-striped tablebordered table-hover">
+                <thead>
+                    <tr class="info">
+                        <th>
+                            <a th:href="@{usuarioListarPag.do(pag=0, orden=usuario)}">Usuario</a>
+                        </th>
+                        <th>
+                            <a th:href="@{usuarioListarPag.do(pag=0, orden=clave)}">Clave</a>
+                        </th>
+                        <th>
+                            <a th:href="@{usuarioListarPag.do(pag=0,
+                               orden=nombreCompleto)}">Nombre completo</a>
+                        </th>
+                        <th>Foto</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${lista}">
+                        <td>
+                            <a th:href="@{|usuarioMod.do?codigoUsuario=| + ${user.usuario}}"
+                               th:text="${user.usuario}">
+                        </td>
+                        <td th:text="${user.clave}"></td>
+                        <td th:text="${user.nombreCompleto}"></td>
+                        <td>
+                            <span th:if="${user.fotoBase64==null}" th:text="|Sin foto|"
+                                  th:remove="tag">Sin foto</span>
+                            <img th:src="@{'data:image/jpeg;base64,'+${user.fotoBase64}}"
+                                 th:if="${user.fotoBase64!=null}"
+                                 height="25" width="25"/>
+                        </td>
+                        <td><a th:href="@{'usuarioEli.do?codigoUsuario=' +
+                               ${user.usuario}}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+        <a th:href="@{usuarioListarPag.do(pag=0,orden=${param.orden})}"
+           th:text="|Primera p&aacute;gina|" >Primera</a> 
+        &nbsp;&nbsp;
+        <a th:href="@{usuarioListarPag.do(pag=1,orden=${param.orden})}"
+           th:text="|Segunda p&aacute;gina|" >Segunda</a>
+        <br/><br/>
+        <a th:href="@{'usuarioCrear.do'}" class="btn btn-primary btn-lg active">Crear
+            Usuario</a>
+        <br />
+        <h3 th:text="'Se han creado en esta sesi&oacute;n '+${contador}+'
+            usuarios!'">Titulo</h3>
+    </body>
+</html> 
