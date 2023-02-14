@@ -7,10 +7,12 @@
     </head>
     <body>
         <h1>Sistema de Matriculas</h1>
-        <h1 th:text=" |Bienvenid@ |+${usuario.nombreCompleto}" >Bienvenid@ </h1>
+        <h1 th:if="${usuario.nombreCompleto}!=null" th:text=" |Bienvenido |+${usuario.nombreCompleto}" >Bienvenid@ </h1>
         <br/><br/><br/>
         <a th:href="@{usuarioListar.do}"> Mantenimineto de Usuario</a>
         <br/><br/><br/>
         <a th:href="@{cursoMostrar.do}"> Consulta de Cursos</a>
+         <br/><br/><br/>
+        <a th:href="@{matriculaMostrar.do}"> Mantenimiento de Matriculas</a>
     </body>
 </html>

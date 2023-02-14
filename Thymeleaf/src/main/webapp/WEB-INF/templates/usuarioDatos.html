@@ -26,9 +26,13 @@
                         <table>
                             <tr>
                                 <td><label for="usuario">Usuario: </label></td>
-                                <td><input id="usuario" th:field="*{usuario}" class="form-control
-                                           text-box" /></td>
-                                <td th:if="${#fields.hasErrors('usuario')}"
+                                <td>
+                                    <input th:if="*{usuario}==null" id="usuario" th:field="*{usuario}" class="form-control text-box" />
+                                    <input th:if="*{usuario}!=null" id="usuario" th:field="*{usuario}" class="form-control text-box" disabled="true" />
+                                    <input th:if="*{usuario}!=null" id="usuario" th:field="*{usuario}" class="form-control text-box" type="hidden" />
+                                </td>
+                                    
+                                    <td th:if="${#fields.hasErrors('usuario')}"
                                     th:errorclass="formFieldError" th:errors="*{usuario}" /></td>
                             </tr>
                             <tr>

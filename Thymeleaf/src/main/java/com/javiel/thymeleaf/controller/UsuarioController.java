@@ -29,6 +29,7 @@ public class UsuarioController {
     public String loginMostrar() {
         return "login";
     }
+    
 
     @RequestMapping("loginAccion")
     public ModelAndView loginAccion(UsuarioEntity usuarioValida) {
